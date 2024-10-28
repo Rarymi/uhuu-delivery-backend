@@ -7,8 +7,11 @@ fornece uma API para cadastrar clientes, buscar informações de geolocalizaçã
 
 - [Funcionalidades](#funcionalidades)
 - [Tecnologias](#tecnologias)
-- [Instalação e Execução](#instalação-e-execução)
+- [Variáveis de Ambiente](#variaveis-do-ambiente)
 - [Configuração do Ambiente](#configuração-do-ambiente)
+- [Instalação e Execução](#instalação-e-execução)
+
+
 
 ## Funcionalidades
 
@@ -32,6 +35,11 @@ Crie um arquivo `.env` na raiz do projeto com as seguintes variáveis:
 
 DATABASE_URL="postgresql://postgres:postgres@db:5432/my_delivery_db" # Endereço do PostgreSQL
 
+## Configuração do Ambiente
+
+Antes de iniciar a aplicação, certifique-se de ter o [Node.js](https://nodejs.org/) e
+o [Docker](https://www.docker.com/) instalados.
+
 ## Instalação e Execução
 
 - Clonar repositório: git clone https://github.com/seu-usuario/uhuu-delivery-backend.git
@@ -41,9 +49,6 @@ DATABASE_URL="postgresql://postgres:postgres@db:5432/my_delivery_db" # Endereço
   - Iniciar o Servidor em desenvolvimento: yarn start:dev # ou npm run start:dev
   - Verificar a Documentação Swagger: http://localhost:3000/api-docs
 
-## Configuração do Ambiente
 
-Antes de iniciar a aplicação, certifique-se de ter o [Node.js](https://nodejs.org/) e
-o [Docker](https://www.docker.com/) instalados.
 
 
