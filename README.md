@@ -26,26 +26,24 @@ fornece uma API para cadastrar clientes, buscar informações de geolocalizaçã
 - **Swagger**: Documentação interativa.
 - **Docker**: Containerização para PostgreSQL e backend.
 
+## Variáveis de Ambiente
+
+Crie um arquivo `.env` na raiz do projeto com as seguintes variáveis:
+
+DATABASE_URL="postgresql://postgres:postgres@db:5432/my_delivery_db" # Endereço do PostgreSQL
+
 ## Instalação e Execução
 
 - Clonar repositório: git clone https://github.com/seu-usuario/uhuu-delivery-backend.git
-- Subir o Banco de Dados com Docker: docker-compose up -d
-- Inicie o Prisma e migre o banco de dados:  prisma migrate dev --name init
-- Iniciar o Servidor em desenvolvimento: yarn start:dev # ou npm run start:dev
-- Verificar a Documentação Swagger: http://localhost:3000/api-docs
+  - Rodando projeto com o docker: docker-compose up -d
+- Caso não queira rodar com o docker:
+  - Inicie o Prisma e migre o banco de dados:  prisma migrate dev --name init
+  - Iniciar o Servidor em desenvolvimento: yarn start:dev # ou npm run start:dev
+  - Verificar a Documentação Swagger: http://localhost:3000/api-docs
 
 ## Configuração do Ambiente
 
 Antes de iniciar a aplicação, certifique-se de ter o [Node.js](https://nodejs.org/) e
 o [Docker](https://www.docker.com/) instalados.
 
-## Variáveis de Ambiente
 
-Crie um arquivo `.env` na raiz do projeto com as seguintes variáveis:
-
-```env
-DATABASE_HOST=localhost          # Endereço do PostgreSQL
-DATABASE_PORT=5432               # Porta do PostgreSQL
-DATABASE_USER=postgres           # Usuário do banco de dados
-DATABASE_PASSWORD=postgres       # Senha do banco de dados
-DATABASE_NAME=my_delivery_db     # Nome do banco de dados
