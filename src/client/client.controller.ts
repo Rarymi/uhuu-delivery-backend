@@ -1,5 +1,4 @@
 import {
-  BadRequestException,
   Body,
   Controller,
   Delete,
@@ -32,20 +31,8 @@ export class ClientController {
     type: Client,
   })
   async createClient(@Body() clientData: CreateClientDto): Promise<Client> {
-    const coordinates = await this.geolocationService.getCoordinates(
-      clientData.address,
-    );
-    if (!coordinates) {
-      throw new BadRequestException(
-        'Geolocalização não encontrada para o endereço fornecido',
-      );
-    }
-
-    const { latitude, longitude } = coordinates;
     return this.clientService.create({
       ...clientData,
-      latitude,
-      longitude,
     });
   }
 
