@@ -18,6 +18,7 @@ RUN yarn prisma generate
 
 COPY start.sh ./
 RUN chmod +x start.sh
+RUN sed -i 's/\r$//' start.sh
 
 EXPOSE 3000
 
