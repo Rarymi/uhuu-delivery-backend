@@ -19,4 +19,4 @@ RUN yarn prisma generate
 
 EXPOSE 3000
 
-CMD ["sh", "-c", "until pg_isready -h db -p 5432; do echo 'Waiting for PostgreSQL...'; sleep 2; done && yarn prisma migrate dev && yarn start:dev"]
+CMD ["sh", "-c", "yarn prisma migrate dev && yarn start:dev"]

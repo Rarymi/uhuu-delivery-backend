@@ -33,7 +33,7 @@ fornece uma API para cadastrar clientes, buscar informações de geolocalizaçã
 
 Crie um arquivo `.env` na raiz do projeto com as seguintes variáveis:
 
-DATABASE_URL="postgresql://postgres:postgres@db:5432/my_delivery_db" # Endereço do PostgreSQL
+DATABASE_URL="postgresql://postgres:postgres@db:5432/my_delivery_db" 
 
 ## Configuração do Ambiente
 
@@ -43,7 +43,10 @@ o [Docker](https://www.docker.com/) instalados.
 ## Instalação e Execução
 
 - Clonar repositório: git clone https://github.com/seu-usuario/uhuu-delivery-backend.git
-  - Rodando projeto com o docker: docker-compose up -d
+  - Rodando projeto com o docker:
+           - Primeiro rode o comando: docker-compose up -d db
+           - Depois rode o comando: docker-compose up -d app
+            - Pronto, backend já está funcionado.
 - Caso não queira rodar com o docker:
   - Inicie o Prisma e migre o banco de dados:  prisma migrate dev --name init
   - Iniciar o Servidor em desenvolvimento: yarn start:dev # ou npm run start:dev
