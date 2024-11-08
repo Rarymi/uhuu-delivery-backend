@@ -1,3 +1,4 @@
+
 FROM node:22-alpine
 
 RUN apk add --no-cache openssl libc6-compat
@@ -16,10 +17,6 @@ ENV PRISMA_CLI_BINARY_TARGETS linux-musl
 
 RUN yarn prisma generate
 
-COPY start.sh ./
-RUN sed -i 's/\r$//' start.sh
-RUN chmod +x start.sh
-
 EXPOSE 3000
 
-ENTRYPOINT ["sh", "./start.sh"]
+CMD ["sh", "-c", "yarn prisma migrate dev && yarn start:dev"]
