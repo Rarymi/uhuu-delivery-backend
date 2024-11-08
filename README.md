@@ -33,7 +33,11 @@ fornece uma API para cadastrar clientes, buscar informações de geolocalizaçã
 
 Crie um arquivo `.env` na raiz do projeto com as seguintes variáveis:
 
+Com o Docker:
 DATABASE_URL="postgresql://postgres:postgres@db:5432/my_delivery_db" 
+
+Sem o Docker:
+DATABASE_URL="postgresql://postgres:postgres@localhost:5432/my_delivery_db"
 
 ## Configuração do Ambiente
 
