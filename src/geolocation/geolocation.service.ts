@@ -6,9 +6,33 @@ import { lastValueFrom } from 'rxjs';
 export class GeolocationService {
   constructor(private readonly httpService: HttpService) {}
 
-  async getCoordinates(address: string) {
-    console.log('GeolocationService.getCoordinates', address);
+  async getAddressSuggestions(address: string) {
+    try {
+      const response = await lastValueFrom(
+        this.httpService.get('https://nominatim.openstreetmap.org/search', {
+          params: {
+            q: address,
+            format: 'json',
+            addressdetails: 1,
+            limit: 1,
+          },
+          headers: {
+            'User-Agent': 'uhuu-geolocation/1.0',
+            'Accept-Language': 'en',
+          },
+        }),
+      );
+      return response.data;
+    } catch (error) {
+      console.error('GeolocationService.getCoordinates error:', error.message);
+      throw new HttpException(
+        'Erro ao buscar coordenadas de geolocalização',
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
+  }
 
+  async getCoordinates(address: string) {
     try {
       const response = await lastValueFrom(
         this.httpService.get('https://nominatim.openstreetmap.org/search', {

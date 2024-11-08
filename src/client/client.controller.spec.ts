@@ -1,7 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ClientController } from './client.controller';
 import { ClientService } from './client.service';
-import { GeolocationService } from '../geolocation/geolocation.service';
 import { CreateClientDto } from './client.dto';
 import { Client } from './client.interface';
 
@@ -15,17 +14,10 @@ describe('ClientController', () => {
     deleteAll: jest.fn(),
   };
 
-  const mockGeolocationService = {
-    getCoordinates: jest.fn(),
-  };
-
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [ClientController],
-      providers: [
-        { provide: ClientService, useValue: mockClientService },
-        { provide: GeolocationService, useValue: mockGeolocationService },
-      ],
+      providers: [{ provide: ClientService, useValue: mockClientService }],
     }).compile();
 
     clientController = module.get<ClientController>(ClientController);
@@ -42,32 +34,22 @@ describe('ClientController', () => {
         name: 'Test Client',
         weight: 70,
         address: '123 Test St',
-        latitude: 0,
-        longitude: 0,
+        latitude: 40.7128,
+        longitude: -74.006,
       };
 
       const createdClient: Client = {
         id: 'uuid',
         ...clientDto,
-        latitude: 40.7128,
-        longitude: -74.006,
       };
 
-      mockGeolocationService.getCoordinates.mockResolvedValue({
-        latitude: 40.7128,
-        longitude: -74.006,
-      });
       mockClientService.create.mockResolvedValue(createdClient);
 
       const result = await clientController.createClient(clientDto);
       expect(result).toEqual(createdClient);
-      expect(mockGeolocationService.getCoordinates).toHaveBeenCalledWith(
-        clientDto.address,
-      );
+
       expect(mockClientService.create).toHaveBeenCalledWith({
         ...clientDto,
-        latitude: 40.7128,
-        longitude: -74.006,
       });
     });
   });
